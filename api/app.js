@@ -50,14 +50,19 @@ app.get('/aluno/:matricula', cors(), async function(request, response, next) {
 })
 
 // EndPoint para buscar alunos cadastrados em certo curso
-app.get('/alunos/curso/:curso', cors(), async function(request, response, next) {
-    let course = request.params.curso
+app.get('/alunos/curso/?', cors(), async function(request, response, next) {
+    let course = request.query.curso
+    let status = request.query.status
 
-    let studentsByCourse = getStudentByCourse(course)
+    let studentsList = getStudentByCourse(course)
 
-    if(studentsByCourse) {
+    if(status != undefined) {
+        studentsList = await filterStudentsByStatus(studentsList, status)
+    }
+
+    if(studentsList) {
         response.status(200)
-        response.json(studentsByCourse)
+        response.json(studentsList)
     } else {
         response.status(404)
     }
