@@ -72,7 +72,14 @@ app.get('/.netlify/functions/api/alunos/curso/?', cors(), async function(request
 app.get('/.netlify/functions/api/alunos/status/:status', cors(), async function(request, response, next) {
     let course = request.params.status
 
-    let studentsList = getStudentsByCourse
+    let studentsList = getStudentsByCourse(course)
+
+    if(studentsList) {
+        response.status(200)
+        response.json(studentsList)
+    } else {
+        response.status(404)
+    }
 })
 
 //EndPoint para buscar alunos com base no status(cursando ou finalizado)
