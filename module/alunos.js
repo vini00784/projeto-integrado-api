@@ -869,7 +869,6 @@ const getConclusionYears = (courseName, studentStatus) => {
         return years
     }
 }
-console.log(getConclusionYears('rds', 'finalizado'))
 
 // Função para buscar os alunos com base no ano de conclusão
 const getStudentsByConclusionYear = (code) => {
