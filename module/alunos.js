@@ -754,7 +754,7 @@ const getAllStudents = () => {
 }
 
 // Função que faz o get dos alunos cadastrados em determinado curso
-const getStudentByCourse = (code) => {
+const getStudentsByCourse = (code) => {
     let course = code.toLowerCase()
     let students = {}
     let studentsName = []
@@ -786,7 +786,7 @@ const getStudentByCourse = (code) => {
     }
 }
 // Função que faz o get dos alunos com base no status
-const getStudentByStatus = (code) => {
+const getStudentsByStatus = (code) => {
     let status = code.toLowerCase()
     let students = {}
     let studentsName = []
@@ -935,8 +935,8 @@ const getSubjects = (code) => {
 module.exports = {
     getStudentsName,
     getAllStudents,
-    getStudentByCourse,
-    getStudentByStatus,
+    getStudentsByCourse,
+    getStudentsByStatus,
     filterStudentsByStatus,
     getStudentsByConclusionYear,
     getSubjects

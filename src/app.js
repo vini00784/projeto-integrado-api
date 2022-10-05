@@ -5,8 +5,8 @@ const bodyParser = require('body-parser')
 // Import de funções:
 const { getAllStudents, 
         getStudentsName, 
-        getStudentByCourse, 
-        getStudentByStatus,
+        getStudentsByCourse, 
+        getStudentsByStatus,
         filterStudentsByStatus,
         getStudentsByConclusionYear,
         getSubjects } 
@@ -53,8 +53,9 @@ app.get('/.netlify/functions/api/aluno/:matricula', cors(), async function(reque
 app.get('/.netlify/functions/api/alunos/curso/?', cors(), async function(request, response, next) {
     let course = request.query.curso
     let status = request.query.status
+    let conclusionYear = request.query.conclusion
 
-    let studentsList = getStudentByCourse(course)
+    let studentsList = getStudentsByCourse(course)
 
     if(status != undefined) {
         studentsList = await filterStudentsByStatus(studentsList, status)
@@ -68,11 +69,17 @@ app.get('/.netlify/functions/api/alunos/curso/?', cors(), async function(request
     }
 })
 
+app.get('/.netlify/functions/api/alunos/status/:status', cors(), async function(request, response, next) {
+    let course = request.params.status
+
+    let studentsList = getStudentsByCourse
+})
+
 //EndPoint para buscar alunos com base no status(cursando ou finalizado)
 app.get('/.netlify/functions/api/alunos/status/:status', cors(), async function(request, response, next) {
     let studentStatus = request.params.status
 
-    let studentsByStatus = getStudentByStatus(studentStatus)
+    let studentsByStatus = getStudentsByStatus(studentStatus)
 
     if(studentsByStatus) {
         response.status(200)
