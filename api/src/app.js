@@ -126,6 +126,4 @@ app.get('/.netlify/functions/api/disciplinas/aluno/:matricula', cors(), async fu
 //     console.log('Server waiting for requests...')
 // })
 
-export {
-    app
-}
+module.exports = app
