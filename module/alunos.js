@@ -839,6 +839,38 @@ const filterStudentsByStatus = (json, status) => {
 }
 // console.log(filterStudentsByStatus(getStudentByCourse('rds'), 'status'))
 
+const getConclusionYears = (courseName, studentStatus) => {
+    let course = courseName.toLowerCase()
+    let status = studentStatus.toLowerCase()
+
+    let years = {}
+    let conclusionYears = []
+    let error = true
+
+    alunos.forEach(item => {
+        item.curso.forEach(item2 => {
+            if(course == item2.sigla.toLowerCase()) {
+                if(status == undefined || status == '' || status != 'finalizado' && status != 'cursando') {
+                    conclusionYears.push(item2.conclusao)
+                    error = false
+                } else if(status == item.status.toLowerCase()) {
+                    conclusionYears.push(item2.conclusao)
+                    error = false
+                }
+            }
+        })
+    })
+
+    years.years = conclusionYears
+
+    if(error) {
+        return false
+    } else {
+        return years
+    }
+}
+console.log(getConclusionYears('rds', 'finalizado'))
+
 // Função para buscar os alunos com base no ano de conclusão
 const getStudentsByConclusionYear = (code) => {
     let conclusionYear = code
