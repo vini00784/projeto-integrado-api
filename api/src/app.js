@@ -25,7 +25,7 @@ app.use((request, response, next) => {
 })
 
 // EndPoint para o get de todos os alunos
-app.get('/alunos', cors(), async function(request, response, next) {
+app.get('/.netlify/functions/api/alunos', cors(), async function(request, response, next) {
     let allStudents = getAllStudents()
 
     if(allStudents) {
@@ -37,7 +37,7 @@ app.get('/alunos', cors(), async function(request, response, next) {
 })
 
 // EndPoint para buscar aluno com base na matrícula
-app.get('/aluno/:matricula', cors(), async function(request, response, next) {
+app.get('/.netlify/functions/api/aluno/:matricula', cors(), async function(request, response, next) {
     let registration = request.params.matricula
     let studentsName = getStudentsName(registration)
 
@@ -50,7 +50,7 @@ app.get('/aluno/:matricula', cors(), async function(request, response, next) {
 })
 
 // EndPoint para buscar alunos cadastrados em certo curso
-app.get('/alunos/curso/?', cors(), async function(request, response, next) {
+app.get('/.netlify/functions/api/alunos/curso/?', cors(), async function(request, response, next) {
     let course = request.query.curso
     let status = request.query.status
 
@@ -69,7 +69,7 @@ app.get('/alunos/curso/?', cors(), async function(request, response, next) {
 })
 
 //EndPoint para buscar alunos com base no status(cursando ou finalizado)
-app.get('/alunos/status/:status', cors(), async function(request, response, next) {
+app.get('/.netlify/functions/api/alunos/status/:status', cors(), async function(request, response, next) {
     let studentStatus = request.params.status
 
     let studentsByStatus = getStudentByStatus(studentStatus)
@@ -83,7 +83,7 @@ app.get('/alunos/status/:status', cors(), async function(request, response, next
 })
 
 // EndPoint para buscar alunos com base no ano de conclusão
-app.get('/alunos/anoConclusao/:anoConclusao', cors(), async function(request, response, next) {
+app.get('/.netlify/functions/api/alunos/anoConclusao/:anoConclusao', cors(), async function(request, response, next) {
     let studentConclusionYear = request.params.anoConclusao
 
     let studentsByConclusionYear = getStudentsByConclusionYear(studentConclusionYear)
@@ -97,7 +97,7 @@ app.get('/alunos/anoConclusao/:anoConclusao', cors(), async function(request, re
 })
 
 // EndPoint para buscar todos os cursos
-app.get('/cursos', cors(), async function(request, response, next) {
+app.get('/.netlify/functions/api/cursos', cors(), async function(request, response, next) {
     let coursesName = getCoursesName()
 
     if(coursesName) {
@@ -109,7 +109,7 @@ app.get('/cursos', cors(), async function(request, response, next) {
 })
 
 // EndPoint para buscar as disciplinas e as médias do aluno individualmente
-app.get('/disciplinas/aluno/:matricula', cors(), async function(request, response, next) {
+app.get('/.netlify/functions/api/disciplinas/aluno/:matricula', cors(), async function(request, response, next) {
     let registration = request.params.matricula
 
     let subjects = getSubjects(registration)
