@@ -705,8 +705,8 @@ const getStudents = () => {
 }
 
 // Função que faz o get do aluno com base na matrícula
-const getStudentsName = (code) => {
-    let registration = code
+const getStudentsName = (studentRegistration) => {
+    let registration = studentRegistration
     let student = {}
     let studentsName = []
     let error = true
@@ -754,8 +754,8 @@ const getAllStudents = () => {
 }
 
 // Função que faz o get dos alunos cadastrados em determinado curso
-const getStudentsByCourse = (code) => {
-    let course = code.toLowerCase()
+const getStudentsByCourse = (courseName) => {
+    let course = courseName.toLowerCase()
     let students = {}
     let studentsName = []
     let error = true
@@ -786,8 +786,8 @@ const getStudentsByCourse = (code) => {
     }
 }
 // Função que faz o get dos alunos com base no status
-const getStudentsByStatus = (code) => {
-    let status = code.toLowerCase()
+const getStudentsByStatus = (studentStatus) => {
+    let status = studentStatus.toLowerCase()
     let students = {}
     let studentsName = []
     let error = true
@@ -871,8 +871,8 @@ const getConclusionYears = (courseName, studentStatus) => {
 }
 
 // Função para buscar os alunos com base no ano de conclusão
-const getStudentsByConclusionYear = (code) => {
-    let conclusionYear = code
+const getStudentsByConclusionYear = (year) => {
+    let conclusionYear = year
     let students = {}
     let studentsName = []
     let error = true
@@ -896,6 +896,10 @@ const getStudentsByConclusionYear = (code) => {
     } else {
         return students
     }
+}
+
+const filterStudentsByConclusionYear = () => {
+
 }
 
 // const filterStudentByYear = (json, year) => {
@@ -929,8 +933,8 @@ const getStudentsByConclusionYear = (code) => {
 
 
 // Função para buscar as disciplinas e suas média com base na matrícula do aluno
-const getSubjects = (code) => {
-    let registration = code.toLowerCase()
+const getSubjects = (studentRegistration) => {
+    let registration = studentRegistration.toLowerCase()
     let students = {}
     let studentsSubjects = []
     let error = true
