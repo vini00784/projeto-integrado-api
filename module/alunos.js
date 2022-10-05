@@ -898,39 +898,37 @@ const getStudentsByConclusionYear = (year) => {
     }
 }
 
-const filterStudentsByConclusionYear = () => {
+const filterStudentsByConclusionYear = (json, year) => {
+    let studentsName = []
+    let studentsNameJson = json
+    let conclusionYear = year.toLowerCase()
+    let filteredJson = {}
+    let error = true
 
+    if(conclusionYear == 'ano de conclusão') {
+        return studentsNameJson
+    }
+
+    const { students } = studentsNameJson
+
+    students.forEach(item => {
+        item.curso.forEach(item2 => {
+            if(item2.conclusao == conclusionYear) {
+                studentsName.push(item)
+                error = false
+            }
+        })
+    })
+
+    filteredJson.students = studentsName
+
+    if(error) {
+        return false
+    } else {
+        return filteredJson
+    }
 }
-
-// const filterStudentByYear = (json, year) => {
-//     let studentsName = []
-//     let studentsNameJson = json
-//     let studentConclusionYear = year
-//     let filteredJson = {}
-//     let error = true
-
-//     if(studentConclusionYear == 'ano de conclusão') {
-//         return studentsNameJson
-//     }
-
-//     const {students} = json
-//     students.forEach(item => {
-//         item.curso.forEach(item2 => {
-//             if(item2.conclusao == year) {
-//                 studentsName.push(item)
-//                 error = false
-//             }
-//             filteredJson.students = studentsName
-//         })
-//     })
-
-//     if(error) {
-//         return false
-//     } else {
-//         return filteredJson
-//     }
-// }
-
+console.log(filterStudentsByConclusionYear(getStudents(), '2022'))
 
 // Função para buscar as disciplinas e suas média com base na matrícula do aluno
 const getSubjects = (studentRegistration) => {
