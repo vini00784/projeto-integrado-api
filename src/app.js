@@ -110,6 +110,10 @@ app.get('/.netlify/functions/api/alunos/anoConclusao/:anoConclusao', cors(), asy
     }
 })
 
+app.get('/.netlify/functions/api/conclusao/', cors(), async function(request, response, next) {
+
+})
+
 // EndPoint para buscar todos os cursos
 app.get('/.netlify/functions/api/cursos', cors(), async function(request, response, next) {
     let coursesName = getCoursesName()
