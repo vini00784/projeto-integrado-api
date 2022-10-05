@@ -10,9 +10,9 @@ const { getAllStudents,
         filterStudentsByStatus,
         getStudentsByConclusionYear,
         getSubjects } 
-        = require('./module/alunos.js')
+        = require('../module/alunos.js')
 
-const { getCoursesName } = require('./module/cursos.js')
+const { getCoursesName } = require('../module/cursos.js')
 
 const app = express()
 
@@ -122,6 +122,10 @@ app.get('/disciplinas/aluno/:matricula', cors(), async function(request, respons
     }
 })
 
-app.listen(3030, function() {
-    console.log('Server waiting for requests...')
-})
+// app.listen(3030, function() {
+//     console.log('Server waiting for requests...')
+// })
+
+export {
+    app
+}
