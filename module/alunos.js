@@ -765,12 +765,7 @@ const getStudentsByCourse = (courseName) => {
             alunos.forEach(item => {
                 item.curso.forEach(item2 => {
                     if(course.toLowerCase() == item2.sigla.toLocaleLowerCase()) {
-                        studentsName.push({
-                            name: item.nome,
-                            registration: item.matricula,
-                            image: item.foto,
-                            status: item.status
-                        })
+                        studentsName.push(item)
                         error = false
                     }
                     students.students = studentsName
