@@ -54,7 +54,7 @@ app.get('/.netlify/functions/api/aluno/:matricula', cors(), async function(reque
 app.get('/.netlify/functions/api/alunos/curso/?', cors(), async function(request, response, next) {
     let course = request.query.curso
     let status = request.query.status
-    let conclusionYear = request.query.conclusion
+    let conclusionYear = request.query.conclusao
 
     let studentsList = getStudentsByCourse(course)
 
@@ -65,7 +65,7 @@ app.get('/.netlify/functions/api/alunos/curso/?', cors(), async function(request
     if(conclusionYear != undefined) {
         studentsList = await filterStudentsByConclusionYear(studentsList, conclusionYear)
     }
-    
+
     if(studentsList) {
         response.status(200)
         response.json(studentsList)
