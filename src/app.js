@@ -9,6 +9,7 @@ const { getAllStudents,
         getStudentsByStatus,
         filterStudentsByStatus,
         getStudentsByConclusionYear,
+        filterStudentsByConclusionYear,
         getSubjects } 
         = require('../module/alunos.js')
 
@@ -61,6 +62,10 @@ app.get('/.netlify/functions/api/alunos/curso/?', cors(), async function(request
         studentsList = await filterStudentsByStatus(studentsList, status)
     }
 
+    if(conclusionYear != undefined) {
+        studentsList = await filterStudentsByConclusionYear(studentsList, conclusionYear)
+    }
+    
     if(studentsList) {
         response.status(200)
         response.json(studentsList)
