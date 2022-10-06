@@ -913,12 +913,16 @@ const filterStudentsByConclusionYear = (json, year) => {
     const { students } = studentsNameJson
 
     students.forEach(item => {
-        item.curso.forEach(item2 => {
-            if(item2.conclusao == conclusionYear) {
-                studentsName.push(item)
-                error = false
-            }
-        })
+        if(item.conclusion == conclusionYear) {
+            studentsName.push(item)
+            error = false
+        }
+        // item.curso.forEach(item2 => {
+        //     if(item2.conclusao == conclusionYear) {
+        //         studentsName.push(item)
+        //         error = false
+        //     }
+        // })
     })
 
     filteredJson.students = studentsName
@@ -929,6 +933,7 @@ const filterStudentsByConclusionYear = (json, year) => {
         return filteredJson
     }
 }
+console.log(filterStudentsByConclusionYear(getStudentsByCourse('ds'), '2024'));
 
 // Função para buscar as disciplinas e suas média com base na matrícula do aluno
 const getSubjects = (studentRegistration) => {
