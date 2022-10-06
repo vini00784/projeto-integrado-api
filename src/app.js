@@ -8,6 +8,7 @@ const { getAllStudents,
         getStudentsByCourse, 
         getStudentsByStatus,
         filterStudentsByStatus,
+        getConclusionYears,
         getStudentsByConclusionYear,
         filterStudentsByConclusionYear,
         getSubjects } 
@@ -74,18 +75,18 @@ app.get('/.netlify/functions/api/alunos/curso/?', cors(), async function(request
     }
 })
 
-app.get('/.netlify/functions/api/alunos/status/:status', cors(), async function(request, response, next) {
-    let course = request.params.status
+// app.get('/.netlify/functions/api/alunos/status/:status', cors(), async function(request, response, next) {
+//     let course = request.params.status
 
-    let studentsList = getStudentsByCourse(course)
+//     let studentsList = getStudentsByCourse(course)
 
-    if(studentsList) {
-        response.status(200)
-        response.json(studentsList)
-    } else {
-        response.status(404)
-    }
-})
+//     if(studentsList) {
+//         response.status(200)
+//         response.json(studentsList)
+//     } else {
+//         response.status(404)
+//     }
+// })
 
 //EndPoint para buscar alunos com base no status(cursando ou finalizado)
 app.get('/.netlify/functions/api/alunos/status/:status', cors(), async function(request, response, next) {
@@ -115,8 +116,18 @@ app.get('/.netlify/functions/api/alunos/anoConclusao/:anoConclusao', cors(), asy
     }
 })
 
-app.get('/.netlify/functions/api/conclusao/', cors(), async function(request, response, next) {
+app.get('/.netlify/functions/api/conclusao/?', cors(), async function(request, response, next) {
+    const course = request.query.curso
+    const studentStatus = request.query.status
 
+    const conclusionYears = getConclusionYears(course, studentStatus)
+
+    if(conclusionYears) {
+        response.status(200)
+        response.json(conclusionYears)
+    } else {
+        response.status(404)
+    }
 })
 
 // EndPoint para buscar todos os cursos
