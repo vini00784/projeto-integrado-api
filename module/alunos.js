@@ -769,7 +769,8 @@ const getStudentsByCourse = (courseName) => {
                             name: item.nome,
                             registration: item.matricula,
                             image: item.foto,
-                            status: item.status
+                            status: item.status,
+                            conclusion: item2.conclusao
                         })
                         error = false
                     }
