@@ -933,7 +933,6 @@ const filterStudentsByConclusionYear = (json, year) => {
         return filteredJson
     }
 }
-console.log(filterStudentsByConclusionYear(getStudentsByCourse('ds'), '2024'));
 
 // Função para buscar as disciplinas e suas média com base na matrícula do aluno
 const getSubjects = (studentRegistration) => {
